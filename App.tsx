@@ -1,21 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppLoading from "expo-app-loading";
+import * as Font from "expo-font";
 
-export default function App() {
+import { Onboarding } from "./src/Authentication/Onboarding";
+import { Welcome } from "./src/Authentication/Welcome";
+
+const AuthenticationStack = createNativeStackNavigator();
+
+const AuthenticationNavigator = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <AuthenticationStack.Navigator screenOptions={{
+      headerShown: false
+    }}>
+      <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
+      <AuthenticationStack.Screen name="Welcome" component={Welcome} />
+    </AuthenticationStack.Navigator>
+  )
+};
+
+const fecthFonts = () => {
+  return Font.loadAsync({
+    "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+    "montserrat-medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+    "montserrat-semibold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
+    "montserrat-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+  })
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [loaded, setLoaded] = useState(false);
+
+  if (!loaded) {
+    return <AppLoading
+      startAsync={fecthFonts}
+      onFinish={() => setLoaded(true)}
+      onError={console.warn}
+    />
+  }
+
+  return (
+    <NavigationContainer>
+      <AuthenticationNavigator />
+    </NavigationContainer>
+  );
+}
