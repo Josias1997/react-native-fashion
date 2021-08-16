@@ -3,9 +3,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
+import { ThemeProvider } from "@shopify/restyle";
 
 import { Onboarding } from "./src/Authentication/Onboarding";
 import { Welcome } from "./src/Authentication/Welcome";
+import theme from "./theme";
 
 const AuthenticationStack = createNativeStackNavigator();
 
@@ -41,8 +43,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <AuthenticationNavigator />
-    </NavigationContainer>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <AuthenticationNavigator />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }

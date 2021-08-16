@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import Animated from "react-native-reanimated";
+import { Text } from "../../../theme";
 
 import { Button } from "../../common";
 
@@ -16,8 +17,8 @@ const { width } = Dimensions.get("window");
 const Footer = ({ footerTitle, footerDescription, last, onPress }: FooterProps) => {
 	return (	
 		<View style={styles.container}>
-			<Text style={styles.title}>{footerTitle}</Text>
-			<Text style={styles.description}>{footerDescription}</Text>
+			<Text variant="title2" style={styles.title}>{footerTitle}</Text>
+			<Text variant="body" style={styles.description}>{footerDescription}</Text>
 			<Button 
 				label={last ? "Let's get started" : "Next"} 
 				variant={last ? "primary" : "default"}
@@ -35,17 +36,11 @@ const styles = StyleSheet.create({
 		padding: 44,
 	},
 	title: {
-		fontFamily: "montserrat-semibold",
-		fontSize: 22,
-		lineHeight: 30,
 		marginBottom: 12,
 		color: "#0C0D34",
 		textAlign: "center"
 	},
 	description: {
-		fontFamily: "montserrat-regular",
-		fontSize: 16,
-		lineHeight: 24,
 		color: "#0C0D34",
 		textAlign: "center",
 		marginBottom: 40 

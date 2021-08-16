@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Dimensions, Image, StyleSheet } from 'react-native';
+import { View, Dimensions, Image, StyleSheet } from 'react-native';
+import { Text } from "../../../theme";
 
 interface SlideProps {
 	label: string;
@@ -24,7 +25,7 @@ const Slide = ({ label, right, picture }: SlideProps) => {
 				<Image source={{ uri: picture }} style={styles.picture} />
 			</View>	
 			<View style={[styles.titleContainer, { transform }]}>
-				<Text style={styles.title}>{label}</Text>
+				<Text variant="hero">{label}</Text>
 			</View>
 		</View>
 	)
