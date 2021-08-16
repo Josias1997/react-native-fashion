@@ -8,8 +8,9 @@ import { ThemeProvider } from "@shopify/restyle";
 import { Onboarding } from "./src/Authentication/Onboarding";
 import { Welcome } from "./src/Authentication/Welcome";
 import theme from "./theme";
+import { Routes } from "./src/types/Routes";
 
-const AuthenticationStack = createNativeStackNavigator();
+const AuthenticationStack = createNativeStackNavigator<Routes>();
 
 const AuthenticationNavigator = () => {
   return (

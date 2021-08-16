@@ -1,17 +1,16 @@
 import React from 'react';
-import { View, Dimensions, Image, StyleSheet } from 'react-native';
-import { Text } from "../../../theme";
+import { View, Dimensions, Image, StyleSheet, ImageSourceType } from 'react-native';
+import { Text, Box } from "../../../theme";
 
 interface SlideProps {
 	label: string;
 	right?: boolean;
-	picture: string;
+	picture: ImageSourceType;
 }
 
 const { width, height } = Dimensions.get("window");
 
 const SLIDE_HEIGHT = 0.61 * height;
-const BORDER_RADIUS = 75;
 
 const Slide = ({ label, right, picture }: SlideProps) => {
 	const transform = [
@@ -22,7 +21,7 @@ const Slide = ({ label, right, picture }: SlideProps) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.underlay}>
-				<Image source={{ uri: picture }} style={styles.picture} />
+				<Image source={picture} style={styles.picture} resizeMode="contain" />
 			</View>	
 			<View style={[styles.titleContainer, { transform }]}>
 				<Text variant="hero">{label}</Text>
@@ -48,13 +47,14 @@ const styles = StyleSheet.create({
 	},
 	underlay: {
 		...StyleSheet.absoluteFillObject,
-		justifyContent: "flex-end"
+		alignItems: "center",
+		justifyContent: "center",
+		top: 50
 	},
 	picture: {
 		...StyleSheet.absoluteFillObject,
 		width: undefined,
-		height: undefined,
-		borderBottomRightRadius: BORDER_RADIUS 
+		height: undefined, 
 	}
 })
 

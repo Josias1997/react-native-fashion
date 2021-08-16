@@ -2,17 +2,22 @@ import React, { useRef } from "react";
 import { View, ScrollView, Dimensions, StyleSheet } from "react-native";
 import { useValue, useScrollHandler, interpolateColor } from "react-native-redash/lib/module/v1";
 import Animated, { multiply, divide } from "react-native-reanimated";
+import { StackNavigationProps } from "@react-navigation/native";
 
 import Slide from "./Slide";
 import Footer from "./Footer";
 import Dot from "./Dot";
+import { Routes } from "../../types/Routes";
+
+import theme from "../../../theme";
 
 const { width, height } = Dimensions.get("window");
 
 const SLIDE_HEIGHT = 0.61 * height;
-const BORDER_RADIUS = 75;
 
-interface OnboardingProps {}
+interface OnboardingProps {
+
+}
 
 const slides = [
 	{ 
@@ -20,32 +25,32 @@ const slides = [
 		color: "#BFEAF5", 
 		footerTitle: "Find Your Outfit", 
 		footerDescription: "Confused about your outfit? Dont't worry! Find the best outfit here!" ,
-		picture: "https://source.unsplash.com/featured/?fashion",
+		picture: require("../../../assets/1.png"), 
 	},
 	{ 
 		label: "Playful", 
 		color: "#BEECC4", 
 		footerTitle: "Hear It First, Wear it First", 
 		footerDescription: "Hating the clothes in your wardrobe? Explore hundreds of noutfit ideas", 
-		picture: "https://source.unsplash.com/featured/?design,fashion",
+		picture: require("../../../assets/2.png"),
 	},
 	{ 
 		label: "Excentric", 
 		color: "#FFE4D9", 
 		footerTitle: "Your Style, Your Way", 
 		footerDescription: "Create your individual & unique style and look amazing everyday",
-		picture: "https://source.unsplash.com/featured/?style,fashion",
+		picture: require("../../../assets/3.png"),
 	},
 	{ 
 		label: "Funky", 
 		color: "#FFDDDD", 
 		footerTitle: "Look Good, Feel Good", 
 		footerDescription: "Discover the latest trends in fashion and explore your personality", 
-		picture: "https://source.unsplash.com/featured/?play,fashion",
+		picture: require("../../../assets/4.png"),
 	}
 ];
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }: StackNavigationProps<Routes, "Onboarding">) => {
 	const scroll = useRef<Animated.ScrollView>(null);
 	const { scrollHandler, x } = useScrollHandler();
 	const backgroundColor = interpolateColor(x, {
@@ -100,20 +105,25 @@ const Onboarding = () => {
 							] 
 						}}
 					>
-						{slides.map(({ footerTitle, footerDescription }, index) =>
-							<Footer 
-								key={index} 
-								onPress={() => {
-									if (scroll.current) {
-										scroll.current
-											.getNode()
-											.scrollTo({ x: width * (index + 1), animated: true })
-									}
-								}}
-								last={index === (slides.length - 1)} 
-								{...{ footerTitle, footerDescription }} 
-							/>
-						)} 	
+						{slides.map(({ footerTitle, footerDescription }, index) => {
+							const last = index === slides.length - 1;
+							return (
+								<Footer 
+									key={index} 
+									onPress={() => {
+										if (last) {
+											navigation.navigate("Welcome");
+										} else if (scroll?.current) {
+											scroll.current
+												.getNode()
+												.scrollTo({ x: width * (index + 1), animated: true })
+										}
+									}}
+									last={index === (slides.length - 1)} 
+									{...{ footerTitle, footerDescription }} 
+								/>
+							)
+						})} 	
 					</Animated.View>
 				</View>
 			</View>
@@ -129,7 +139,7 @@ const styles = StyleSheet.create({
 	slider: {
 		height: SLIDE_HEIGHT,
 		backgroundColor: "cyan",
-		borderBottomRightRadius: BORDER_RADIUS
+		borderBottomRightRadius: theme.borderRadii.xl
 	},
 	footer: {
 		flex: 1
@@ -141,11 +151,11 @@ const styles = StyleSheet.create({
 	footerContent: {
 		flex: 1,
 		backgroundColor: "white",
-		borderTopLeftRadius: BORDER_RADIUS	
+		borderTopLeftRadius: theme.borderRadii.xl	
 	},
 	pagination: { 
 		...StyleSheet.absoluteFillObject,
-		height: BORDER_RADIUS,
+		height: theme.borderRadii.xl,
 		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",

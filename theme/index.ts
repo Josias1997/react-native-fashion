@@ -1,4 +1,4 @@
-import { createTheme, createText, BaseTheme } from '@shopify/restyle'
+import { createTheme, createText, createBox, BaseTheme } from '@shopify/restyle'
 
 const palette = {
   purpleLight: '#8C6FF7',
@@ -18,11 +18,12 @@ const theme: BaseTheme = createTheme({
   colors: {
   	primary: '#2CB980',
   	title: '#0C0D34',
-  	body: 'rgba(12, 13, 52, 0.7)',
+  	text: 'rgba(12, 13, 52, 0.7)',
   	default: 'rgba(12, 13, 52, 0.1)', 
-  	hero: "white",
   	white: "white",
-  	black: "black"  
+  	black: "black" ,
+    grey: "rgba(12, 13, 52, 0.05)",
+    light: "#F4F0EF"
   },
   spacing: {
     s: 8,
@@ -30,13 +31,19 @@ const theme: BaseTheme = createTheme({
     l: 24,
     xl: 40,
   },
+  borderRadii: {
+    s: 4,
+    m: 10,
+    l: 25,
+    xl: 75,
+  },
   textVariants: {
   	hero: {
-  		fontSize: 60,
-		lineHeight: 60,
-		fontFamily: "montserrat-bold",
-		color: "hero",
-		textAlign: "center"
+    	fontSize: 60,
+  		lineHeight: 60,
+  		fontFamily: "montserrat-bold",
+  		color: "white",
+  		textAlign: "center"
   	},
   	title1: {
   		fontSize: 28,
@@ -53,8 +60,13 @@ const theme: BaseTheme = createTheme({
   		fontSize: 16,
   		lineHeight: 24,
   		fontFamily: "montserrat-regular",
-  		color: "body"
-  	}
+  		color: "text"
+  	},
+    button: {
+      fontSize: 15,
+      fontFamily: "montserrat-medium",
+      color: "text"
+    }
   },
   breakpoints: {
     phone: 0,
@@ -64,4 +76,5 @@ const theme: BaseTheme = createTheme({
 
 export type Theme = typeof theme;
 export const Text = createText<Theme>();
+export const Box = createBox<Theme>();
 export default theme;
