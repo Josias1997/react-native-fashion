@@ -1,29 +1,17 @@
 import { createTheme, createText, createBox, BaseTheme } from '@shopify/restyle'
 
-const palette = {
-  purpleLight: '#8C6FF7',
-  purplePrimary: '#5A31F4',
-  purpleDark: '#3F22AB',
-
-  greenLight: '#56DCBA',
-  greenPrimary: '#0ECD9D',
-  greenDark: '#0A906E',
-
-  black: '#0B0B0B',
-  white: '#F0F2F3',
-};
-
 
 const theme: BaseTheme = createTheme({
   colors: {
   	primary: '#2CB980',
-  	title: '#0C0D34',
+  	secondary: '#0C0D34',
   	text: 'rgba(12, 13, 52, 0.7)',
   	default: 'rgba(12, 13, 52, 0.1)', 
   	white: "white",
   	black: "black" ,
     grey: "rgba(12, 13, 52, 0.05)",
-    light: "#F4F0EF"
+    light: "#F4F0EF",
+    danger: "#FF0058",
   },
   spacing: {
     s: 8,
@@ -48,13 +36,13 @@ const theme: BaseTheme = createTheme({
   	title1: {
   		fontSize: 28,
   		fontFamily: "montserrat-semibold",
-  		color: "title",
+  		color: "secondary",
   	},
   	title2: {
   		fontSize: 22,
   		lineHeight: 30,
   		fontFamily: "montserrat-semibold",
-  		color: "title"
+  		color: "secondary"
   	},
   	body: {
   		fontSize: 16,
@@ -63,7 +51,7 @@ const theme: BaseTheme = createTheme({
   		color: "text"
   	},
     button: {
-      fontSize: 15,
+      fontSize: 14,
       fontFamily: "montserrat-medium",
       color: "text"
     }

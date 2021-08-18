@@ -3,21 +3,21 @@ import { View, ScrollView, Dimensions, StyleSheet } from "react-native";
 import { useValue, useScrollHandler, interpolateColor } from "react-native-redash/lib/module/v1";
 import Animated, { multiply, divide } from "react-native-reanimated";
 import { StackNavigationProps } from "@react-navigation/native";
+import { useTheme } from "@shopify/restyle";
 
 import Slide from "./Slide";
 import Footer from "./Footer";
 import Dot from "./Dot";
 import { Routes } from "../../types/Routes";
 
-import theme from "../../../theme";
+import theme, { Theme } from "../../../theme";
 
 const { width, height } = Dimensions.get("window");
 
 const SLIDE_HEIGHT = 0.61 * height;
 
-interface OnboardingProps {
+interface OnboardingProps {}
 
-}
 
 const slides = [
 	{ 

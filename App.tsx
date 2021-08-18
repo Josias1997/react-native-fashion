@@ -1,27 +1,11 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { ThemeProvider } from "@shopify/restyle";
 
-import { Onboarding } from "./src/Authentication/Onboarding";
-import { Welcome } from "./src/Authentication/Welcome";
 import theme from "./theme";
-import { Routes } from "./src/types/Routes";
-
-const AuthenticationStack = createNativeStackNavigator<Routes>();
-
-const AuthenticationNavigator = () => {
-  return (
-    <AuthenticationStack.Navigator screenOptions={{
-      headerShown: false
-    }}>
-      <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
-      <AuthenticationStack.Screen name="Welcome" component={Welcome} />
-    </AuthenticationStack.Navigator>
-  )
-};
+import { AuthenticationNavigator } from "./src/navigation";
 
 const fecthFonts = () => {
   return Font.loadAsync({
