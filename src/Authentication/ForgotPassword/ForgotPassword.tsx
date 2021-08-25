@@ -45,7 +45,10 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
 					initialValues={{ 
 						email: "",  
 					}}
-					onSubmit={values => console.log(values)}
+					onSubmit={values => {
+						console.log(values);
+						navigation.navigate("PasswordChanged");
+					}}
 					validationSchema={schema}
 				>
 					{({ 

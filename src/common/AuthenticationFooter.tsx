@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { BorderlessButton } from "react-native-gesture-handler";
 
 import { Box, Text } from "../../theme";
 import SocialLogin from "./SocialLogin";

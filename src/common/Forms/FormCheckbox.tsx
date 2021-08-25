@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Feather as Icon } from "@expo/vector-icons";
-import { RectButton } from "react-native-gesture-handler";
 
 import { Box, Text } from "../../../theme";
 
@@ -13,7 +12,7 @@ interface FormCheckboxProps {
 
 const FormCheckbox = ({ label, value, onChange }: FormCheckboxProps) => {
 	return (
-		<RectButton onPress={onChange} style={{
+		<TouchableOpacity onPress={onChange} style={{
 			flex: 1,
 			justifyContent: "center"
 		}}>
@@ -33,7 +32,7 @@ const FormCheckbox = ({ label, value, onChange }: FormCheckboxProps) => {
 				</Box>
 				<Text variant="button">{label}</Text>
 			</Box>
-		</RectButton>
+		</TouchableOpacity>
 	)
 }
 

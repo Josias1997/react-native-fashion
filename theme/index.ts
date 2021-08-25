@@ -12,6 +12,7 @@ const theme: BaseTheme = createTheme({
     grey: "rgba(12, 13, 52, 0.05)",
     light: "#F4F0EF",
     danger: "#FF0058",
+    primaryLight: "#E7F9F7"
   },
   spacing: {
     s: 8,

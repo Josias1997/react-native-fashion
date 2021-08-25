@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Image } from 'react-native';
+import { Dimensions, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { StackNavigationProps } from "@react-navigation/native";
 
 import { Box, Text } from "../../../theme";
@@ -53,11 +53,11 @@ const Welcome = ({ navigation }: StackNavigationProps<Routes, "Welcome">) => {
 						label="Join us, it's free"
 						onPress={() => navigation.navigate("Register")} 
 					/>
-					<Button 
-						variant="default" 
-						label="Forgot password?"
-						onPress={() => navigation.navigate("ForgotPassword")} 
-					/>
+					<TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}> 
+						<Text variant="button" color="secondary">
+							Forgot password?
+						</Text> 
+					</TouchableOpacity>
 				</Box>
 			</Box>
 		</Box>
